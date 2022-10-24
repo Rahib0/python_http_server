@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh 'sudo service docker stop'
                 sh 'sudo service docker start'
-                sh 'sudo docker run -d -p 81:8081 -d rahib0/c27001-assignment'
+                sh 'sudo docker run -d -p 81:8000 -d rahib0/c27001-assignment'
             }
         }
     }
