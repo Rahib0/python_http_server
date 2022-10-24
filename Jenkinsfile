@@ -1,25 +1,21 @@
 pipeline {
     agent any
-
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+	}
     stages {
-        stage('Test - 1') {
+        stage('Build') {
             steps {
-                echo 'pulling from github...'
+                sh 'sudo docker container prune -f'
+                sh 'sudo docker build . -t jacquesguinebault/c270-assignment'
             }
         }
-        stage('Hello - 2') {
+
+        stage('Run') {
             steps {
-                echo 'Hello World'
-            }
-        }
-        stage('UAT - 3') {
-            steps {
-                echo 'pre Prod'
-            }
-        }
-        stage('Deploy - 4') {
-            steps {
-                echo 'Hello World!'
+                sh 'sudo service docker stop'
+                sh 'sudo service docker start'
+                sh 'sudo docker run -d -p 81:8081 -d jacquesguinebault/c270-assignment'
             }
         }
     }
