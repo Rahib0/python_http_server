@@ -26,10 +26,5 @@ pipeline {
                 sh 'sudo docker push rahib0/c27001-assignment'
             }
         }
-        post {
-            always {
-                sh 'sudo docker logout'
-            }
-        }
     }
 }
