@@ -27,9 +27,9 @@ pipeline {
             }
         }
         post {
-		always {
-			sh 'sudo docker logout'
-		}
-	}
+            always {
+                sh 'sudo docker logout'
+            }
+        }
     }
 }
