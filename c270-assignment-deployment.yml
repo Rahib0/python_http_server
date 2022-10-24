@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: c270-assignment-deployment
+  labels:
+    tier: c270-assignment-front-end
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: c270-assignment-front-end
+  template:
+    metadata:
+      name: c270-assignment
+      labels:
+        tier: c270-assignment-front-end
+    spec:
+      containers:
+      - name: c270-assignment
+        image: rahib0/c27001-assignment:latest
+        ports:
+        - containerPort: 8000
